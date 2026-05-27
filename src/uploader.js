@@ -18,10 +18,10 @@ const s3Client = new S3Client({
   },
 });
 
-const BUCKET = process.env.R2_BUCKET;
-const PUBLIC_URL = process.env.R2_PUBLIC_URL;
-const IMAGE_FOLDER = process.env.IMAGE_FOLDER || 'images';
-const ARTICLE_FOLDER = process.env.ARTICLE_FOLDER || 'articles';
+const BUCKET = process.env.R2_BUCKET?.trim();
+const PUBLIC_URL = process.env.R2_PUBLIC_URL?.trim();
+const IMAGE_FOLDER = (process.env.IMAGE_FOLDER || 'images').trim();
+const ARTICLE_FOLDER = (process.env.ARTICLE_FOLDER || 'articles').trim();
 
 /**
  * 将 Markdown 和图片上传到 R2
