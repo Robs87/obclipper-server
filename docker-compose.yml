@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  obclipper-server:
+    build: .
+    container_name: obclipper-server
+    restart: unless-stopped
+    ports:
+      - "3080:3000"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+      - PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium-browser
