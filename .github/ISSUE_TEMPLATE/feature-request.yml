@@ -1,0 +1,33 @@
+name: 功能请求
+description: 提出一个新功能建议
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 你的需求
+      description: 描述你遇到的问题或希望实现的场景
+      placeholder: 例如：我希望能支持剪藏 PDF 文件
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: 期望的解决方案
+      description: 描述你希望如何解决上述问题
+      placeholder: 例如：新增 /api/clip/pdf 接口，接受 PDF URL 并转换为 Markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 替代方案
+      description: 你考虑过的其他替代方案
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: 补充信息
+      description: 其他有助于理解需求的上下文或截图
