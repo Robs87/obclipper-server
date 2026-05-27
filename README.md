@@ -4,6 +4,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-20+-339933?logo=node.js&logoColor=white)](package.json)
 
+[English](README_EN.md) | 中文
+
 ObClipper 是一个文章剪藏后端服务：接收文章 URL → 抓取网页内容 → 转换为 Markdown → 上传至 Cloudflare R2（S3 兼容存储）。配合微信小程序和 Obsidian 插件使用。
 
 ## 目录
