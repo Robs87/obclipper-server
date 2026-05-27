@@ -16,7 +16,13 @@ async function scrapeArticle(url) {
     // 启动无头浏览器
     browser = await chromium.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-gpu',
+        '--disable-dev-shm-usage',
+        '--disable-extensions',
+      ],
       // Docker 环境使用系统 Chromium（通过环境变量指定路径）
       ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH && {
         executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH,
