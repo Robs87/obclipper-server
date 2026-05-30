@@ -4,6 +4,7 @@
  * 支持微信公众号、知乎、简书等中文站点的特殊处理
  */
 const { chromium } = require('playwright');
+const { isBlockedUrl } = require('./utils/url-guard');
 
 /**
  * 抓取文章内容
@@ -11,6 +12,11 @@ const { chromium } = require('playwright');
  * @returns {Promise<{title: string, author: string, publishDate: string, content: string, coverImage: string, siteName: string}>}
  */
 async function scrapeArticle(url) {
+  // SSRF 防护：校验 URL 协议和内网 IP
+  const blockReason = isBlockedUrl(url);
+  if (blockReason) {
+    throw new Error(`URL 不安全，已拒绝: ${blockReason}`);
+  }
   let browser;
   try {
     // 启动无头浏览器
@@ -156,9 +162,9 @@ async function scrapeArticle(url) {
 
       let content = clone.innerHTML;
 
-      // 微信文章特殊处理：恢复图片 data-src
+      // 微信文章特殊处理：仅对 img 标签恢复 data-src
       if (isWeChatPage) {
-        content = content.replace(/data-src=/g, 'src=');
+        content = content.replace(/<img([^>]*) data-src=/g, '<img$1 src=');
       }
 
       return { title, author, publishDate, content, coverImage, siteName };

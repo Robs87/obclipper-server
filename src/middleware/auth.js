@@ -6,10 +6,13 @@ function authMiddleware(req, res, next) {
   const apiKey = req.headers['x-api-key'] || req.query.api_key;
   const validKey = process.env.API_KEY;
 
-  // 如果未配置 API_KEY，则跳过验证（开发模式）
+  // 如果未配置 API_KEY，生产环境应拒绝所有请求（fail-closed）
   if (!validKey) {
-    console.warn('[警告] 未配置 API_KEY 环境变量，跳过认证检查');
-    return next();
+    console.error('[安全] 未配置 API_KEY 环境变量，拒绝所有认证请求');
+    return res.status(500).json({
+      success: false,
+      error: '服务端配置错误：未设置 API_KEY，请联系管理员',
+    });
   }
 
   if (!apiKey || apiKey !== validKey) {
