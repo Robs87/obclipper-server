@@ -18,6 +18,9 @@ const { uploadToStorage, testStorageConnection, validateStorageConfig } = requir
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// 信任反向代理（Nginx/Cloudflare），使 req.ip 正确获取客户端 IP
+app.set('trust proxy', 1);
+
 // === 全局中间件 ===
 app.use(helmet());
 
