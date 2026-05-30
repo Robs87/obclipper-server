@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>obclipper-server</Name>
+  <Repository>ghcr.io/robs87/obclipper-server:latest</Repository>
+  <Registry>https://ghcr.io/v2/robs87/obclipper-server</Registry>
+  <Network>bridge</Network>
+  <MyIP></MyIP>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support></Support>
+  <Project></Project>
+  <Overview>ObClipper 网页剪藏服务端 - 抓取网页、转换 Markdown、上传到 S3/R2 存储</Overview>
+  <Category>Tools:</Category>
+  <WebUI>https://obclipper.332626.xyz:9090/api/health</WebUI>
+  <TemplateURL></TemplateURL>
+  <Icon>/usr/local/emhttp/plugins/dynamix.docker.manager/images/question.png</Icon>
+  <ExtraParams>--restart unless-stopped</ExtraParams>
+  <PostArgs></PostArgs>
+  <CPUset></CPUset>
+  <DateInstalled></DateInstalled>
+  <DonateText></DonateText>
+  <DonateLink></DonateLink>
+  <Requires></Requires>
+  <Config Name="API Key" Target="API_KEY" Default="" Mode="env" Description="API 认证密钥（必填）" Type="Variable" Display="always" Required="true" Mask="true">YOUR_API_KEY_HERE</Config>
+  <Config Name="WebUI Port" Target="3000" Default="3000" Mode="tcp" Description="容器内部端口" Type="Port" Display="always" Required="true" Mask="false">3090</Config>
+  <Config Name="CORS Origins" Target="CORS_ORIGINS" Default="https://mp.weixin.qq.com" Mode="env" Description="允许的 CORS 来源（逗号分隔）" Type="Variable" Display="always" Required="false" Mask="false">https://mp.weixin.qq.com</Config>
+</Container>
